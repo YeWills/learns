@@ -1,38 +1,41 @@
 const  express = require('express') ;
+const  bodyParser = require('body-parser') ;
 const models = require('../models')
 
 
 const app = express();
 
-app.get('/create', async (req,res, next)=>{
-    const {name} = req.query;
-    const user = await models.User.create({
-        name
-    })
-    res.json({
-        msg:'create success!',
-    })
+//获取req.body
+app.use(express.json());
+app.use(express.urlencoded());
+app.use(bodyParser.urlencoded({extended:true}));
+
+app.post('/create', async (req,res, next)=>{
+    try {
+        const {name, deadline, content, status} = req.body;
+        const user = await models.User.create({
+            name,
+            deadline,
+            status,
+            content
+        })
+        res.json({
+            user,
+            msg:'create success!',
+        })
+    } catch (error) {
+        next(error)
+    }
+  
 })
 
-
-app.get('/list', async (req,res, next)=>{
-    const {name} = req.query;
-    const list = await models.User.findAll();
-    res.json({
-        list
-    })
-})
-
-
-app.get('/detail/:id', async (req,res, next)=>{
-    const {id} = req.params;
-
-    const detail = await models.User.findOne({
-        where:{id}
-    });
-    res.json({
-        detail
-    })
+app.use((err,req,res,next)=>{
+    if(err){
+        res.json({
+            msg:err.message,
+            success:false
+        })
+    }
 })
 
 

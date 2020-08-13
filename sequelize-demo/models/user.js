@@ -16,9 +16,11 @@ module.exports = (sequelize, DataTypes) => {
   User.init({
     name: DataTypes.STRING,
     degeline: DataTypes.DATE,
-    content: DataTypes.STRING
+    content: DataTypes.STRING,
+    status: DataTypes.INTEGER,
   }, {
     sequelize,
+    timestamps:false,
     modelName: 'User',
   });
   return User;
