@@ -11,13 +11,11 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      createdAt: {
-        allowNull: false,
+      degeline: {
         type: Sequelize.DATE
       },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+      content: {
+        type: Sequelize.STRING
       }
     });
   },

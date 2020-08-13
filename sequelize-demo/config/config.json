@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "root1111",
-    "database": "sqe_db",
+    "database": "todo",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
