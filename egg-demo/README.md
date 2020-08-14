@@ -26,3 +26,28 @@ $ open http://localhost:7001/
   - service 公共接口逻辑的一些抽取
   - view 模版引擎文件 配合插件 egg-view-ejs 一起用
   - router.js 所有接口的路由入口
+
+### FAQ
+### 接口返回必须加上await
+```js
+class HomeController extends Controller {
+  async index() {
+    const { ctx } = this;
+    const res = await ctx.service.product.index();
+    //await 这里必须加上await ，不然访问路由会报错 404 not found
+    await ctx.render('index.html', { res });
+  }
+}
+
+```
+### post请求需禁用csrf安全攻击验证
+加入以下代码，不然会报异常。
+```js
+//egg-demo/config/config.default.js
+ // 禁止post安全攻击验证功能
+  config.security = {
+    csrf: {
+      enable: false,
+    },
+  };
+```
