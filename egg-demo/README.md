@@ -27,6 +27,12 @@ $ open http://localhost:7001/
   - view 模版引擎文件 配合插件 egg-view-ejs 一起用
   - router.js 所有接口的路由入口
 
+### 实现功能
+- view 模版引擎文件 配合插件 egg-view-ejs 一起用
+- 如何存储静态文件 - public 目录中
+- 下载文件功能
+- 抽取service
+
 ### FAQ
 ### 接口返回必须加上await
 ```js
