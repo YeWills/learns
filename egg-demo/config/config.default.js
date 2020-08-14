@@ -17,6 +17,19 @@ module.exports = appInfo => {
 
   // add your middleware config here
   config.middleware = [];
+  // 配置模板引擎
+  config.view = {
+    mapping: {
+      '.html': 'ejs',
+    },
+  };
+
+  // 禁止post安全攻击验证功能
+  config.security = {
+    csrf: {
+      enable: false,
+    },
+  };
 
   // add your user config here
   const userConfig = {

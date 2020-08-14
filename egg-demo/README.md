@@ -8,7 +8,7 @@
 
 see [egg docs][egg] for more detail.
 
-### Development
+### 使用
 
 ```bash
 $ npm i
@@ -16,18 +16,13 @@ $ npm run dev
 $ open http://localhost:7001/
 ```
 
-### Deploy
+### 目录说明
 
-```bash
-$ npm start
-$ npm stop
-```
+- config 配置信息以及插件信息
 
-### npm scripts
-
-- Use `npm run lint` to check code style.
-- Use `npm test` to run unit test.
-- Use `npm run autod` to auto detect dependencies upgrade, see [autod](https://www.npmjs.com/package/autod) for more detail.
-
-
-[egg]: https://eggjs.org
+- app 项目主目录
+  - controller 接口逻辑编写，按功能分组 如首页 ，产品等等。
+  - public 静态文件 比如模版引擎的静态文件放置
+  - service 公共接口逻辑的一些抽取
+  - view 模版引擎文件 配合插件 egg-view-ejs 一起用
+  - router.js 所有接口的路由入口
