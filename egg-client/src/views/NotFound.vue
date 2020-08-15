@@ -1,6 +1,6 @@
 <template>
     <div>
-        detail
+        not found
     </div>
 </template>
 <script>

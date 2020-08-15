@@ -1,6 +1,6 @@
 <template>
     <div>
-        home
+        add
     </div>
 </template>
 <script>
