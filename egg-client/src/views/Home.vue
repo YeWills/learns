@@ -39,7 +39,7 @@ export default {
       });
     },
     onLoad() {
-      axios.get("http://localhost:7001/article").then(res => {
+      axios.get("/article").then(res => {
         if (res.status == 200) {
           this.loading = false;
           this.finished = true;
@@ -54,11 +54,9 @@ export default {
       });
     }
   },
-  watch: {
-    list(){
-      this.onLoad();
-    }
-  },
+    mounted(){
+        this.onLoad();
+    },
 };
 </script>
 <style scoped>

@@ -22,7 +22,7 @@ export default {
   },
   created() {
     axios
-      .get("http://localhost:7001/article/" + this.$route.query.id)
+      .get("/article/" + this.$route.query.id)
       .then(res => {
         res.data.msg.createTime = moment(res.data.msg.createTime).format("YYYY-MM-DD HH:mm:ss");
         this.detail = res.data.msg;

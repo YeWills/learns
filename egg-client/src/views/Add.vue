@@ -3,6 +3,7 @@
     <van-uploader :max-count="1" :after-read="afterRead" v-model="fileList" />
     <van-cell-group>
       <van-field v-model="title" placeholder="请输入文章标题" />
+      <van-field v-model="summary" placeholder="请输入简介" type="textarea" autosize />
       <van-field v-model="content" placeholder="请输入文章内容" type="textarea" autosize />
     </van-cell-group>
     <van-button @click="addEvent" type="primary" class="b-submit">提交</van-button>
@@ -24,6 +25,7 @@ export default {
       fileList: [],
       title: "",
       content: "",
+      summary: "",
       img: ""
     };
   },
@@ -35,10 +37,11 @@ export default {
       let data = {
         title: this.title,
         content: this.content,
-        img: this.img
+        img: this.img,
+        summary: this.summary,
       };
       axios
-        .post("http://localhost:7001/article", data)
+        .post("/article", data)
         .then(
           this.$router.push({path:'/'})
         );
