@@ -8,6 +8,7 @@
 - 定义一个原型方法then
 - then方法内递归构造函数实现链式调用
 - 定义静态方法all、race、resolve等等
+- 基于发布订阅模式
 
 ### 注意点
 #### setTimeout内需要重新try catch
@@ -36,6 +37,17 @@
 ```
 #### 建议使用class而非function原型来做继承
 class可以避免原型的浅拷贝问题。
+#### reslove\reject是异步因为用了setTimeout
+```js
+ setTimeout(()=>{
+        handle(onResolved)
+    })
+
+
+     function handle(callback) {
+                 resolve(result)
+            }
+```
 
 
 ### 参考
