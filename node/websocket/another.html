@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!--  websocket连接demo -->
+
+<script>
+
+    let socket;
+    let lockReconnect = false;
+    let wsCfg = {
+    // websocket地址
+    url: "ws://127.0.0.1:6003"
+    };
+    const createWebSocket = ()=> {
+    try {
+    // 创建Web Socket 连接
+    socket = new WebSocket(wsCfg.url);
+    // 初始化事件
+    initEventHandle(socket);
+    } catch (e) {
+    // 出错时重新连接
+    reconnect(wsCfg.url);
+    }
+    }
+
+    const initEventHandle = (socket)=> {
+    // 连接关闭时触发
+    socket.onclose = () => {
+    console.log("连接关闭");
+    };
+    // 通信发生错误时触发
+    socket.onerror = () => {
+    // 重新创建长连接
+    reconnect();
+    };
+    // 连接建立时触发
+    socket.onopen = () => {
+    console.log("连接成功");
+    };
+    // 客户端接收服务端数据时触发
+    socket.onmessage = msg => {
+    // 业务逻辑处理
+    console.log(msg.data, "ws:data");
+    if(msg.data.includes('股票')){
+        document.querySelector('#price').innerText = msg.data
+    }
+    if(msg.data.includes('火车票')){
+        document.querySelector('#tic').innerText = msg.data
+    }
+    };
+    }
+
+    const reconnect = ()=> {
+    if (lockReconnect) {
+    return;
+    }
+    lockReconnect = true;
+
+    // 没连接上会一直重连，设置延迟避免请求过多
+    setTimeout(() => {
+    lockReconnect = false;
+    createWebSocket(wsCfg.url);
+    }, 2000);
+    }
+
+    const getPrice=()=> {
+    socket.send("price");
+    }
+    const getTic=()=> {
+    socket.send("tickets");
+    }
+    const toClose=()=> {
+    console.log('close')
+    socket.close()
+    }
+</script>
+<div onclick="createWebSocket()">
+    开启服务ws
+</div>
+<div onclick="toClose()">
+    关闭连接
+</div>
+<div onclick="getPrice()">
+    <div >点击，获取股票信息</div>
+    <div id="price">0</div>
+</div>
+<div onclick="getTic()">
+    <div id="test">点击，获取火车票信息</div>
+    <div id="tic">0</div>
+</div>
+
+    
+</body>
+</html>
