@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon node ./index.js"
+    "start": "nodemon node ./websocket/websocket.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.20.0",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "ws": "^7.3.1"
   }
 }
