@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon node ./websocket/websocket.js"
+    "start": "nodemon node ./cookie/serve.js"
   },
   "author": "",
   "license": "ISC",
