@@ -1,4 +1,5 @@
 const  express = require('express') ;
+const  path = require('path') ;
 const  bodyParser = require('body-parser') ;
 const models = require('../models')
 
@@ -9,6 +10,9 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(bodyParser.urlencoded({extended:true}));
+
+app.use('/pub',express.static(path.resolve(__dirname, 'public')))
+
 
 app.post('/create', async (req,res, next)=>{
     try {
