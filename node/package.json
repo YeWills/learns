@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon node ./cookie/serve.js"
+    "start": "nodemon node ./xss/serve.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.20.0",
     "nodemon": "^2.0.4",
+    "url": "^0.11.0",
     "ws": "^7.3.1"
   }
 }
