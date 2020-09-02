@@ -13,7 +13,10 @@
 <script>
     function post2(){
         const val = $('#input').val();
-        $.get(`/test?val=${val}`,function(data,status){
+        // $.get(`/test?val=${val}`,function(data,status){
+        //     $('#display').html(data)
+        // });
+        $.get(`/set?val=${val}`,function(data,status){
             $('#display').html(data)
         });
     }

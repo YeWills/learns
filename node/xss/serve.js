@@ -1,32 +1,66 @@
+// /实现一个函数，可以将数组转化为树状数据结构 要求程序具有侦测错误输入的能力
 
-const http = require('http');
-const fs = require('fs');
-const url = require('url');
-const path = require('path')
+function convert(list, parentKey, currentKey, rootValue) {
+}
+const list = [
+  {
+    "id": 19,
+    "parentId": 0,
+  },
+  {
+    "id": 18,
+    "parentId": 16,
+  },
+  {
+    "id": 17,
+    "parentId": 16,
+  },
+  {
+    "id": 16,
+    "parentId": 0,
+  }
+];
 
-//http://127.0.0.1:3000/icon.jpg
-//http://127.0.0.1:3000/test.html
-const port = 3000;
-http.createServer((req,res)=>{
-    if(req.url.includes('html')){
-        const file = req.url.replace('/','') || 'test.html'
-        fs.readFile(path.resolve(__dirname,file), (err, data)=>{
-            if(err){
-                res.writeHead(404);
-                res.end('404 not found')
-            }
-            res.end(data)
-        })
+const parentIdmap = list.reduce((acc,item)=>{
+    const {id, parentId} = item;
+    if(acc[parentId] || acc[parentId] === 0){
+      acc[parentId] = [...acc[parentId], id]
+    }else{
+      acc[parentId] = [id]
     }
-    if(req.url.includes('set')){
-        res.setHeader('Set-Cookie', ["testcokie123=panada11111;","hangzhou=uuuu;"])
-        res.end('set cookie ok')
+    return acc;
+  },{})
+  
+  console.log(parentIdmap)
+
+const tr = {
+    id:0,
+    children:[
+        
+    ]
+}
+
+const result = convert(list, 'parentId', 'id', 0);
+const tree = {
+  "id": 0,
+  "children": [
+    {
+      "id": 19,
+      "parentId": 0
+    },
+    {
+      "id": 16,
+      "parentId": 0,
+      "children": [
+        {
+          "id": 18,
+          "parentId": 16
+        },
+        {
+          "id": 17,
+          "parentId": 16
+        }
+      ]
     }
-    if(req.url.includes('test')){
-      
-        var params = url.parse(req.url, true).query;
-        console.log(params)
-        console.log(params.val)
-        res.end(params.val)
-    }
-}).listen(port, ()=>console.log(`open port ${port}`))
+  ]
+}
