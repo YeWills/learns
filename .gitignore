@@ -8,6 +8,7 @@ coverage/
 run/
 suspect/
 .DS_Store
+.cache
 *.sw*
 *.un~
 .vscode/
